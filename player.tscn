@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bog41vegbbed"]
+
+[ext_resource type="Script" path="res://Codigos/player.gd" id="1_cgybu"]
+[ext_resource type="PackedScene" uid="uid://dso6guek2ciup" path="res://Assets/Walking/Walking.dae" id="2_os7bo"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_51w43"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 1.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kdtg1"]
+height = 1.5
+radius = 0.4
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_cgybu")
+
+[node name="Walking" parent="." instance=ExtResource("2_os7bo")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.768972, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_51w43")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_kdtg1")
+
+[node name="CameraController" type="Node3D" parent="."]
+top_level = true
+
+[node name="CameraTarget" type="Node3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.930456, 0.366404, 0, -0.366404, 0.930456, 0, 1.81753, 3.19547)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/CameraTarget"]
+current = true
